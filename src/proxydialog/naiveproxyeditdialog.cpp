@@ -18,9 +18,6 @@ NaiveProxyEditDialog::NaiveProxyEditDialog(Connection *_connection, QWidget *par
     ui->serverPortEdit->setText(QString::number(connection->profile.serverPort));
     ui->usernameEdit->setText(connection->profile.username);
     ui->pwdEdit->setText(connection->profile.password);
-    ui->resetDateEdit->setDate(connection->profile.nextResetDate);
-    ui->resetDateEdit->setMinimumDate(QDate::currentDate());
-    ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &NaiveProxyEditDialog::save);
 
@@ -40,7 +37,6 @@ void NaiveProxyEditDialog::save()
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
     connection->profile.username = ui->usernameEdit->text();
     connection->profile.password = ui->pwdEdit->text();
-    connection->profile.nextResetDate = ui->resetDateEdit->date();
     connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 
     this->accept();

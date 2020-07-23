@@ -104,7 +104,6 @@ void Connection::latencyTest()
 
 void Connection::start()
 {
-    profile.lastTime = QDateTime::currentDateTime();
     //perform a latency test if the latency is unknown
     if (profile.latency == TQProfile::LATENCY_UNKNOWN) {
         latencyTest();
@@ -431,22 +430,18 @@ void Connection::onTrojanConnectionDestoryed(Connection& connection, const uint6
 
 void Connection::onNewBytesTransmitted(const quint64 &u, const quint64 &d)
 {
-    profile.currentDownloadUsage += d;
-    profile.currentUploadUsage += u;
     profile.totalDownloadUsage += d;
     profile.totalUploadUsage += u;
-    emit dataUsageChanged(profile.currentDownloadUsage + profile.currentUploadUsage, profile.totalDownloadUsage + profile.totalUploadUsage);
+    emit dataUsageChanged(profile.totalDownloadUsage + profile.totalUploadUsage);
     QList<quint64> data({u, d, 0, 0});
     emit dataTrafficAvailable(data);
 }
 
 void Connection::onNewV2RayBytesTransmitted(const quint64 &pu, const quint64 &pd, const quint64 &du, const quint64 &dd)
 {
-    profile.currentDownloadUsage += pd;
-    profile.currentUploadUsage += pu;
     profile.totalDownloadUsage += pd;
     profile.totalUploadUsage += pu;
-    emit dataUsageChanged(profile.currentDownloadUsage + profile.currentUploadUsage, profile.totalDownloadUsage + profile.totalUploadUsage);
+    emit dataUsageChanged(profile.totalDownloadUsage + profile.totalUploadUsage);
     QList<quint64> data({pu, pd, du, dd});
     emit dataTrafficAvailable(data);
 }

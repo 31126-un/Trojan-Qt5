@@ -1465,22 +1465,6 @@ void ConfigHelper::readAdvanceModeSettings()
 
 void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)
 {
-    QDate currentDate = QDate::currentDate();
-    if (profile.nextResetDate.isNull()){//invalid if the config.ini is old
-        //the default reset day is 1 of every month
-        profile.nextResetDate = QDate(currentDate.year(), currentDate.month(), 1);
-        onConfigUpdateFromOldVersion();
-        profile.totalDownloadUsage += profile.currentDownloadUsage;//we used to use received
-        profile.totalUploadUsage += profile.currentUploadUsage; //we used to use sent
-    }
-
-    if (profile.nextResetDate < currentDate) {//not <= because that'd casue multiple reset on this day
-        profile.currentDownloadUsage = 0;
-        profile.currentUploadUsage = 0;
-        while (profile.nextResetDate <= currentDate) {
-            profile.nextResetDate = profile.nextResetDate.addMonths(1);
-        }
-    }
 }
 
 Connection* ConfigHelper::startAutoStart(const ConnectionTableModel& model)

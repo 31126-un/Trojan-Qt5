@@ -67,7 +67,7 @@ signals:
     void stateChanged(bool started);
     void latencyAvailable(const int);
     void newLogAvailable(const QString &);
-    void dataUsageChanged(const quint64 &current, const quint64 &total);
+    void dataUsageChanged(const quint64 &total);
     void dataTrafficAvailable(const QList<quint64> data);
     void natTypeFinished(const QString &);
     void startFailed();

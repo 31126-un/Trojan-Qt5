@@ -18,8 +18,6 @@ Socks5EditDialog::Socks5EditDialog(Connection *_connection, QWidget *parent) :
     ui->serverPortEdit->setText(QString::number(connection->profile.serverPort));
     ui->usernameEdit->setText(connection->profile.username);
     ui->pwdEdit->setText(connection->profile.password);
-    ui->resetDateEdit->setDate(connection->profile.nextResetDate);
-    ui->resetDateEdit->setMinimumDate(QDate::currentDate());
     ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &Socks5EditDialog::save);
@@ -40,7 +38,6 @@ void Socks5EditDialog::save()
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
     connection->profile.username = ui->usernameEdit->text();
     connection->profile.password = ui->pwdEdit->text();
-    connection->profile.nextResetDate = ui->resetDateEdit->date();
     connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 
     this->accept();

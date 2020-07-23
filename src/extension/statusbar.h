@@ -15,11 +15,11 @@ public:
     ~StatusBar() override;
 
 public slots:
-    void refresh(QString localAddr, QList<int> ports, QList<QString> stats);
+    void refresh( QList<int> ports, QList<QString> stats);
     void refreshNatType(QString natType);
 
 private:
-    void updatePortStatus(QString localAddr, int socks5Port, int httpPort, int pacPort);
+    void updatePortStatus(int socks5Port, int httpPort, int pacPort);
     void updateSpeedLabels(QString down, QString up, QString downTotal, QString upTotal);
 
     QPushButton *m_dlSpeedLbl;

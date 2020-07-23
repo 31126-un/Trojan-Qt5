@@ -22,7 +22,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_dlSpeedLbl->setCursor(Qt::PointingHandCursor);
     m_dlSpeedLbl->setStyleSheet("text-align:left;");
-    m_dlSpeedLbl->setMinimumWidth(200);
+    m_dlSpeedLbl->setMinimumWidth(185);
 
     m_upSpeedLbl = new QPushButton(this);
     m_upSpeedLbl->setIcon(QIcon(":/icons/icons/upload.svg"));
@@ -30,18 +30,18 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_upSpeedLbl->setCursor(Qt::PointingHandCursor);
     m_upSpeedLbl->setStyleSheet("text-align:left;");
-    m_upSpeedLbl->setMinimumWidth(200);
+    m_upSpeedLbl->setMinimumWidth(185);
 
-    m_SOCKS5Lbl = new QLabel(tr("SOCKS5   %1: %2").arg("127.0.0.1").arg("0"), this);
+    m_SOCKS5Lbl = new QLabel(tr("SOCKS5   %1").arg("0"), this);
     m_SOCKS5Lbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
-    m_HTTPLbl = new QLabel(tr("HTTP   %1: %2").arg("127.0.0.1").arg("0"), this);
+    m_HTTPLbl = new QLabel(tr("HTTP   %1").arg("0"), this);
     m_HTTPLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
-    m_PACLbl = new QLabel(tr("PAC   %1: %2").arg("127.0.0.1").arg("0"), this);
+    m_PACLbl = new QLabel(tr("PAC   %1").arg("0"), this);
     m_PACLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
-    m_NATLbl = new QLabel(tr("NAT     %1").arg("NotTested"));
+    m_NATLbl = new QLabel(tr("NAT   %1").arg("Unknown"));
     m_NATLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
     // Because on some platforms the default icon size is bigger
@@ -94,22 +94,22 @@ StatusBar::~StatusBar()
 {
 }
 
-void StatusBar::refresh(QString localAddr, QList<int> ports, QList<QString> stats)
+void StatusBar::refresh(QList<int> ports, QList<QString> stats)
 {
-    updatePortStatus(localAddr, ports[0], ports[1], ports[2]);
+    updatePortStatus(ports[0], ports[1], ports[2]);
     updateSpeedLabels(stats[0], stats[1], stats[2], stats[3]);
 }
 
 void StatusBar::refreshNatType(QString natType)
 {
-   m_NATLbl->setText(tr("NAT     %1").arg(natType));
+   m_NATLbl->setText(tr("NAT   %1").arg(natType));
 }
 
-void StatusBar::updatePortStatus(QString localAddr, int socks5Port, int httpPort, int pacPort)
+void StatusBar::updatePortStatus(int socks5Port, int httpPort, int pacPort)
 {
-    m_SOCKS5Lbl->setText(tr("SOCKS5   %1:%2").arg(localAddr).arg(QString::number(socks5Port)));
-    m_HTTPLbl->setText(tr("HTTP   %1:%2").arg(localAddr).arg(QString::number(httpPort)));
-    m_PACLbl->setText(tr("PAC   %1:%2").arg("127.0.0.1").arg(pacPort));
+    m_SOCKS5Lbl->setText(tr("SOCKS5   %1").arg(QString::number(socks5Port)));
+    m_HTTPLbl->setText(tr("HTTP   %1").arg(QString::number(httpPort)));
+    m_PACLbl->setText(tr("PAC   %1").arg(pacPort));
 }
 
 void StatusBar::updateSpeedLabels(QString down, QString up, QString downTotal, QString upTotal)

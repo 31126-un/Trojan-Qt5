@@ -26,7 +26,7 @@ const QStringList ConnectionItem::bytesUnits = QStringList()
 
 int ConnectionItem::columnCount()
 {
-    return 9;
+    return 6;
 }
 
 QVariant ConnectionItem::data(int column, int role) const
@@ -66,37 +66,13 @@ QVariant ConnectionItem::data(int column, int role) const
             } else {
                 return QVariant(con->profile.latency);
             }
-        case 5://data usage (term)
-            if (role == Qt::ForegroundRole) {
-                return QVariant(QColor::fromRgb(112, 112, 112));
-            } else if (role == Qt::DisplayRole) {
-                return QVariant(convertBytesToHumanReadable(con->profile.currentDownloadUsage + con->profile.currentUploadUsage));
-            } else {
-                return QVariant(con->profile.currentDownloadUsage + con->profile.currentUploadUsage);
-            }
-        case 6://data usage (total)
+        case 5://data usage (total)
             if (role == Qt::ForegroundRole) {
                 return QVariant(QColor::fromRgb(112, 112, 112));
             } else if (role == Qt::DisplayRole) {
                 return QVariant(convertBytesToHumanReadable(con->profile.totalDownloadUsage + con->profile.totalUploadUsage));
             } else {
                 return QVariant(con->profile.totalDownloadUsage + con->profile.totalUploadUsage);
-            }
-        case 7://reset date
-            if (role == Qt::ForegroundRole) {
-                return QVariant(QColor::fromRgb(112, 112, 112));
-            } else if (role == Qt::DisplayRole) {
-                return QVariant(con->profile.nextResetDate.toString(Qt::SystemLocaleShortDate));
-            } else {
-                return QVariant(con->profile.nextResetDate);
-            }
-        case 8://last used
-            if (role == Qt::ForegroundRole) {
-                return QVariant(QColor::fromRgb(112, 112, 112));
-            } else if (role == Qt::DisplayRole) {
-                return QVariant(con->profile.lastTime.toString(Qt::SystemLocaleShortDate));
-            } else {
-                return QVariant(con->profile.lastTime);
             }
         default:
             return QVariant();
@@ -213,12 +189,10 @@ void ConnectionItem::clearTraffic()
 {
     TQProfile p;
     p = con->getProfile();
-    p.currentDownloadUsage = 0;
-    p.currentUploadUsage = 0;
     p.totalDownloadUsage = 0;
     p.totalUploadUsage = 0;
     con->setProfile(p);
-    emit dataUsageChanged(p.currentDownloadUsage + p.currentUploadUsage, p.totalDownloadUsage + p.totalUploadUsage);
+    emit dataUsageChanged(p.totalDownloadUsage + p.totalUploadUsage);
 }
 
 Connection* ConnectionItem::getConnection()

@@ -51,13 +51,7 @@ QVariant ConnectionTableModel::headerData(int section, Qt::Orientation orientati
     case 4:
         return QVariant(tr("Latency"));
     case 5:
-        return QVariant(tr("Term Usage"));
-    case 6:
         return QVariant(tr("Total Usage"));
-    case 7:
-        return QVariant(tr("Reset Date"));
-    case 8:
-        return QVariant(tr("Last Used"));
     default:
         return QVariant();
     }
@@ -245,12 +239,12 @@ void ConnectionTableModel::onConnectionLatencyChanged()
 {
     ConnectionItem *item = qobject_cast<ConnectionItem*>(sender());
     int row = items.indexOf(item);
-    emit dataChanged(this->index(row, 3), this->index(row, 3));
+    emit dataChanged(this->index(row, 4), this->index(row, 4));
 }
 
 void ConnectionTableModel::onConnectionDataUsageChanged()
 {
     ConnectionItem *item = qobject_cast<ConnectionItem*>(sender());
     int row = items.indexOf(item);
-    emit dataChanged(this->index(row, 4), this->index(row, 5));
+    emit dataChanged(this->index(row, 5), this->index(row, 5));
 }

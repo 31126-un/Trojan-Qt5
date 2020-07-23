@@ -87,9 +87,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     ports.append(configHelper->getInboundSettings().httpLocalPort);
     ports.append(configHelper->getInboundSettings().pacLocalPort);
     QList<QString> stats({"0 B", "0 B", "0 B", "0 B"});
-    m_statusBar->refresh(configHelper->getInboundSettings().enableIpv6Support ? (configHelper->getInboundSettings().shareOverLan ? "::" : "::1") : (configHelper->getInboundSettings().shareOverLan ? "0.0.0.0" : "127.0.0.1"),
-    ports,
-    stats);
+    m_statusBar->refresh(ports, stats);
 
     sbMgr = new SubscribeManager(this, configHelper);
     notifier = new StatusNotifier(this, configHelper, sbMgr, this);
@@ -121,7 +119,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     ui->toolBar->setObjectName("toolBar");
 
     // set the minimum size
-    this->setMinimumSize(825, 562);
+    this->setMinimumSize(825, 618);
 
     /** Reset the font. */
 #if !defined(Q_OS_MAC)
@@ -909,9 +907,7 @@ void MainWindow::onStatusAvailable(QList<quint64> data)
     stats.append(Utils::bytesConvertor(data[0])); // upload
     stats.append(Utils::bytesConvertor(MidMan::getConnection().getProfile().totalDownloadUsage));
     stats.append(Utils::bytesConvertor(MidMan::getConnection().getProfile().totalUploadUsage));
-    m_statusBar->refresh(configHelper->getInboundSettings().enableIpv6Support ? (configHelper->getInboundSettings().shareOverLan ? "::" : "::1") : (configHelper->getInboundSettings().shareOverLan ? "0.0.0.0" : "127.0.0.1"),
-    ports,
-    stats);
+    m_statusBar->refresh(ports, stats);
 }
 
 void MainWindow::onNatTypeFinished(QString natType)
