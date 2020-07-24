@@ -142,26 +142,6 @@
         </property>
        </widget>
       </item>
-      <item row="8" column="0">
-       <widget class="QLabel" name="autoStartLabel">
-        <property name="text">
-         <string>Automation</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="QCheckBox" name="autoStartCheckBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Auto connect on application start</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -195,7 +175,6 @@
   <tabstop>serverAddrEdit</tabstop>
   <tabstop>serverPortEdit</tabstop>
   <tabstop>pwdEdit</tabstop>
-  <tabstop>autoStartCheckBox</tabstop>
  </tabstops>
  <resources/>
  <connections>

@@ -1469,14 +1469,6 @@ void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)
 
 Connection* ConfigHelper::startAutoStart(const ConnectionTableModel& model)
 {
-    int size = model.rowCount();
-    for (int i = 0; i < size; ++i) {
-        Connection *con = model.getItem(i)->getConnection();
-        if (con->profile.autoStart) {
-            con->start();
-            return con;
-        }
-    }
     return NULL;
 }
 

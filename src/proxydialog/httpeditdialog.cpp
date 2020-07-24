@@ -18,7 +18,6 @@ HttpEditDialog::HttpEditDialog(Connection *_connection, QWidget *parent) :
     ui->serverPortEdit->setText(QString::number(connection->profile.serverPort));
     ui->usernameEdit->setText(connection->profile.username);
     ui->pwdEdit->setText(connection->profile.password);
-    ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &HttpEditDialog::save);
 
@@ -38,7 +37,6 @@ void HttpEditDialog::save()
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
     connection->profile.username = ui->usernameEdit->text();
     connection->profile.password = ui->pwdEdit->text();
-    connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 
     this->accept();
 }

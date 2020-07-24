@@ -16,7 +16,6 @@ VmessEditDialog::VmessEditDialog(Connection *_connection, QWidget *parent) :
     ui->testsCB->setCurrentText(connection->profile.testsEnabled);
     ui->securityComboBox->setCurrentText(connection->profile.security);
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
-    ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &VmessEditDialog::save);
 
@@ -43,7 +42,6 @@ void VmessEditDialog::save()
     connection->profile.testsEnabled = ui->testsCB->currentText();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
     connection->profile.vmessSettings = streamWidget->getSettings();
-    connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 
     this->accept();
 }

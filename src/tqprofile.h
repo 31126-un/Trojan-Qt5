@@ -52,7 +52,6 @@ struct TQProfile
 
     bool equals(const TQProfile &profile) const;
 
-    bool autoStart;
     quint16 serverPort;
     QString type;
     QString group;

@@ -37,7 +37,6 @@ void NaiveProxyEditDialog::save()
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
     connection->profile.username = ui->usernameEdit->text();
     connection->profile.password = ui->pwdEdit->text();
-    connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 
     this->accept();
 }

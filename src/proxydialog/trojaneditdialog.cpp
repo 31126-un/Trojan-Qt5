@@ -22,7 +22,6 @@ TrojanEditDialog::TrojanEditDialog(Connection *_connection, QWidget *parent) :
     ui->sniEdit->setText(connection->profile.sni);
     ui->reuseSessionCheckBox->setChecked(connection->profile.reuseSession);
     ui->sessionTicketCheckBox->setChecked(connection->profile.sessionTicket);
-    ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &TrojanEditDialog::save);
 
@@ -48,7 +47,6 @@ void TrojanEditDialog::save()
     connection->profile.password = ui->pwdEdit->text();
     connection->profile.sni = ui->sniEdit->text();
     connection->profile.trojanGoSettings = trojanGoWidget->getSettings();
-    connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 
     this->accept();
 }
