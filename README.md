@@ -85,6 +85,10 @@ This project is based on:
 
 Trojan-Qt5's icon is owned by [mielink] and [erdongchan], any unanthorized usage will be blamed.
 
+## Backup Project MEMBERS
+- [Trojan-Qt5-Backup](https://github.com/Trojan-Qt5-Backup)
+
+<!--
 ## Sponsors
 
 WARNING, BETTER DO SOME RESEARCH BEFORE PURCHASE IT. I TAKE ABSOLUTELY ZERO RESPONSIBILITY.
@@ -109,5 +113,4 @@ Use this [link](https://www.hxlm.org/#/register?code=a7cWmBDX) to register now!
 ![YouYun](https://i.imgur.com/U4ue42O.jpg)  
 Use this [link](https://youyun666.com/auth/register?code=FDqS) to register now!
 
-## Backup Project MEMBERS
-- [Trojan-Qt5-Backup](https://github.com/Trojan-Qt5-Backup)
+
